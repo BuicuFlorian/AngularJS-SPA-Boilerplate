@@ -7,7 +7,7 @@
 
 ## Installation
 
-* Download the [repository]()
+* Download the [repository](https://github.com/BuicuFlorian/AngularJS-SPA-Boilerplate/archive/master.zip)
 * Install dependencies: `npm install`
 * Compile files: `npm run build`
 * Start the server: `npm start` or, if you have nodemon installed: `npm run dev`
