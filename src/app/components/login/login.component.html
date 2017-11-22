@@ -1,0 +1,40 @@
+<div class="col-md-4 col-md-offset-4" id="center-container">
+    <form (submit)="login(loginForm.value)" [formGroup]="loginForm">
+        <legend>
+            <h1 class="text-center raleway"><b>Log In</b></h1>
+        </legend>
+        <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+            <ul *ngFor="let error of errors" class="list-unstyled">
+                <li><strong>{{ error }}</strong></li>
+            </ul>
+        </div>
+        <div class="form-group" [ngClass]="{
+            'has-error': loginForm.get('email').invalid && loginForm.get('email').dirty, 
+            'has-success': loginForm.get('email').valid && loginForm.get('email').dirty 
+        }">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                <input type="email" formControlName="email" class="form-control" placeholder="Email address" autofocus>
+            </div>
+            <span class="text-danger" *ngIf="loginForm.get('email').invalid && loginForm.get('email').dirty">
+                <span *ngIf="loginForm.get('email').hasError('required')"><b>Email is required.</b></span>
+            <span *ngIf="loginForm.get('email').hasError('pattern')"><b>Invalid email address.</b></span>
+            </span>
+        </div>
+        <div class="form-group" [ngClass]="{
+            'has-error': loginForm.get('password').invalid && loginForm.get('password').dirty, 
+            'has-success': loginForm.get('password').valid && loginForm.get('password').dirty 
+        }">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                <input type="password" formControlName="password" class="form-control" placeholder="Password">
+            </div>
+            <span class="text-danger" *ngIf="loginForm.get('password').errors && loginForm.controls.password.dirty">
+                <span *ngIf="loginForm.get('password').hasError('required')"><b>Password is required.</b></span>
+            </span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid"><i *ngIf="loading" class="fa fa-spinner fa-pulse"></i> Log in</button>
+        </div>
+    </form>
+</div>
