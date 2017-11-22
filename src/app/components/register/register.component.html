@@ -1,0 +1,54 @@
+<div class="col-md-4 col-md-offset-4 component-body" id="center-container">
+    <form (submit)="register(registerForm.value)" [formGroup]="registerForm">
+        <legend>
+            <h1 class="text-center raleway"><b>Register</b></h1>
+        </legend>
+        <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+            <ul *ngFor="let error of errors" class="list-unstyled">
+                <li><strong>{{ error }}</strong></li>
+            </ul>
+        </div>
+        <div class="form-group" [ngClass]="{
+            'has-error': registerForm.get('email').invalid && registerForm.get('email').dirty, 
+            'has-success': registerForm.get('email').valid && registerForm.get('email').dirty 
+        }">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                <input type="email" class="form-control" formControlName="email" placeholder="Email address" autofocus>
+            </div>
+            <span class="text-danger" *ngIf="registerForm.get('email').invalid && registerForm.get('email').dirty">
+                <span *ngIf="registerForm.get('email').hasError('required')"><b>Email is required.</b></span>
+            <span *ngIf="registerForm.get('email').hasError('pattern')"><b>Invalid email address.</b></span>
+            </span>
+        </div>
+        <div class="form-group" [ngClass]="{
+            'has-error': registerForm.get('password').invalid && registerForm.get('password').dirty, 
+            'has-success': registerForm.get('password').valid && registerForm.get('password').dirty 
+        }">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                <input type="password" formControlName="password" class="form-control" placeholder="Password">
+            </div>
+            <span class="text-danger" *ngIf="registerForm.get('password').errors && registerForm.get('password').dirty">
+                <span *ngIf="registerForm.get('password').hasError('required')"><b>Password is required.</b></span>
+                <span *ngIf="registerForm.get('password').hasError('minlength')"><b>Password must be 8 characters long, we need another {{ registerForm.get('password').errors.minlength.requiredLength - registerForm.get('password').errors.minlength.actualLength }} characters.</b></span>
+            </span>
+        </div>
+        <div class="form-group" [ngClass]="{
+            'has-error': registerForm.get('passwordConfirmation').invalid && registerForm.get('passwordConfirmation').dirty, 
+            'has-success': registerForm.get('passwordConfirmation').valid && registerForm.get('passwordConfirmation').dirty 
+        }">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
+                <input type="password" formControlName="passwordConfirmation" class="form-control" placeholder="Password Confirmation">
+            </div>
+            <span class="text-danger" *ngIf="registerForm.get('passwordConfirmation').errors && registerForm.get('passwordConfirmation').dirty">
+                <span *ngIf="registerForm.get('passwordConfirmation').hasError('required')"><b>Password is required.</b></span>
+                <span *ngIf="registerForm.get('passwordConfirmation').hasError('minlength')"><b>Password must be 8 characters long, we need another {{ registerForm.get('passwordConfirmation').errors.minlength.requiredLength - registerForm.get('passwordConfirmation').errors.minlength.actualLength }} characters.</b></span>
+            </span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="! registerForm.valid"><i *ngIf="loading" class="fa fa-spinner fa-pulse"></i> Sign up</button>
+        </div>
+    </form>
+</div>
