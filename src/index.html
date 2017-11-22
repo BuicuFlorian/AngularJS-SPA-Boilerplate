@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AngularJS SPA Boilerplate</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.cosmo.min.css">
+    <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Polyfills -->
+    <script src="core-js/client/shim.min.js"></script>
+    <script src="zone.js/dist/zone.js"></script>
+    <script src="systemjs/dist/system.src.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+        System.import('main.js').catch(function(err) {
+            console.error(err);
+        });
+    </script>
+</head>
+
+<body>
+    <app-root>
+        <div id="center-container">
+            <h1 class="raleway"><b>Loading</b> <i class="fa fa-cog fa-spin"></i></h1>
+        </div>
+    </app-root>
+
+    <!-- Scripts -->
+    <script src="jquery/dist/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
