@@ -1,0 +1,57 @@
+<div class="col-md-6 col-md-offset-3" id="center-container">
+
+    <!-- Change password form. -->
+    <form *ngIf="changePasswordForm" [formGroup]="changePasswordForm">
+        <legend>
+            <h1 class="text-center raleway"><b>Change your password</b></h1>
+        </legend>
+        <div *ngIf="errors && errors.length > 0" class="alert alert-danger">
+            <ul *ngFor="let error of errors" class="list-unstyled">
+                <li><strong>{{ error }}</strong></li>
+            </ul>
+        </div>
+        <div class="form-group" [ngClass]="{
+			'has-error': changePasswordForm.get('currentPassword').invalid && changePasswordForm.get('currentPassword').dirty, 
+			'has-success': changePasswordForm.get('currentPassword').valid && changePasswordForm.get('currentPassword').dirty 
+		}">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" formControlName="currentPassword" class="form-control" placeholder="Current Password">
+            </div>
+            <span class="text-danger" *ngIf="changePasswordForm.get('currentPassword').errors && changePasswordForm.get('currentPassword').dirty">
+				<span *ngIf="changePasswordForm.get('currentPassword').hasError('required')"><b>Password is required.</b></span>
+                <span *ngIf="changePasswordForm.get('currentPassword').hasError('minlength')"><b>Password must be 8 characters long, we need another {{ changePasswordForm.get('currentPassword').errors.minlength.requiredLength - changePasswordForm.get('currentPassword').errors.minlength.actualLength }} characters.</b></span>
+            </span>
+        </div>
+        <div class="form-group" [ngClass]="{
+            'has-error': changePasswordForm.get('newPassword').invalid && changePasswordForm.get('newPassword').dirty, 
+            'has-success': changePasswordForm.get('newPassword').valid && changePasswordForm.get('newPassword').dirty 
+        }">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" formControlName="newPassword" class="form-control" placeholder="New Password">
+            </div>
+            <span class="text-danger" *ngIf="changePasswordForm.get('newPassword').errors && changePasswordForm.get('newPassword').dirty">
+                <span *ngIf="changePasswordForm.get('newPassword').hasError('required')"><b>Password is required.</b></span>
+                <span *ngIf="changePasswordForm.get('newPassword').hasError('minlength')"><b>Password must be 8 characters long, we need another {{ changePasswordForm.get('newPassword').errors.minlength.requiredLength - changePasswordForm.get('newPassword').errors.minlength.actualLength }} characters.</b></span>
+            </span>
+        </div>
+
+        <div class="form-group" [ngClass]="{
+            'has-error': changePasswordForm.get('newPasswordConfirmation').invalid && changePasswordForm.get('newPasswordConfirmation').dirty, 
+            'has-success': changePasswordForm.get('newPasswordConfirmation').valid && changePasswordForm.get('newPasswordConfirmation').dirty 
+        }">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" formControlName="newPasswordConfirmation" class="form-control" placeholder="New Password Confirmation">
+            </div>
+            <span class="text-danger" *ngIf="changePasswordForm.get('newPasswordConfirmation').errors && changePasswordForm.get('newPasswordConfirmation').dirty">
+                <span *ngIf="changePasswordForm.get('newPasswordConfirmation').hasError('required')"><b>Password is required.</b></span>
+                <span *ngIf="changePasswordForm.get('newPasswordConfirmation').hasError('minlength')"><b>Password must be 8 characters long, we need another {{ changePasswordForm.get('newPasswordConfirmation').errors.minlength.requiredLength - changePasswordForm.get('newPasswordConfirmation').errors.minlength.actualLength }} characters.</b></span>
+            </span>
+        </div>
+        <div class="form-group">
+            <button (click)="updatePassword(changePasswordForm.value)" class="btn btn-primary btn-block" [disabled]="!changePasswordForm.valid"><i *ngIf="loading" class="fa fa-spinner fa-pulse"></i> Change password</button>
+        </div>
+    </form>
+</div>
