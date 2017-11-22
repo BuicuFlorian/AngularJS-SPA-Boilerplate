@@ -1,0 +1,8 @@
+.navbar-nav>li.active>a {
+    background: #38a9f4;
+    color: white !important;
+}
+
+.navbar-nav>li>a:hover {
+	background: orange;
+}
